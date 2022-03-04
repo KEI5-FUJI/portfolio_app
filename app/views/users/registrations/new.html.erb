@@ -6,8 +6,13 @@
 
 <div class="signup_form">
   <h2>新規登録</h2>
-  <%= form_with(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
 
     <div class="field">
       <%= f.label :email %><br />
@@ -28,7 +33,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "新規登録" %>
+      <%= f.submit "確認用メールを送信する" %>
     </div>
     
   <% end %>
