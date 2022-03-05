@@ -84,6 +84,53 @@ RSpec.describe "Requests", type: :request do
 
     end
   end
-  
 
+  describe "リクエスト詳細" do
+    let!(:request_1) {user.requests.create(request_name: "テストです。あれを借りたい。",
+      request_detail: "テストの投稿です。",
+      reward: "テストの報酬です。")}
+
+    context "ログインしない時" do
+      it "詳細ページに入れない" do
+        get request_path(request_1)
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context "リクエスト製作者でログイン" do
+      before do
+        sign_in(user)
+      end
+
+      it "詳細ページに入れる。削除とメッセージルーム一覧作成が存在する" do
+        get request_path(request_1)
+        expect(response).to have_http_status(200)
+        expect(response.body).to include("削除")
+        expect(response.body).to include("メッセージルーム一覧へ")
+      end
+
+    end
+
+    context "関係ないユーザーでログイン" do
+      before do
+        other_user = User.create(name: "other_keigo",
+          email: "other_test@ex.com",
+          password: "password",
+          confirmed_at: Date.today,
+          created_at: Date.today,
+         updated_at: Date.today)
+        sign_in(other_user)
+      end
+
+      it "詳細ページに入れる。削除とメッセージルーム一覧作成が存在しない。貸せるが存在" do
+        get request_path(request_1)
+        expect(response).to have_http_status(200)
+        expect(response.body).not_to include("削除")
+        expect(response.body).not_to include("メッセージルーム一覧へ")
+        expect(response.body).to include("貸せる")
+      end
+    end
+
+  end
+  
 end

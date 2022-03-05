@@ -1,2 +1,26 @@
-<h1>Requests#show</h1>
-<p>Find me in app/views/requests/show.html.erb</p>
+<div class="mypage">
+  <div class="requests-form">
+  </div>
+
+  <div class="requests-list">
+    <h1><%= @request.request_name %></h1>
+    <p><%= @request.request_detail %></p>
+    <p><%= @request.reward %></p>
+    <p>リクエストユーザー: <%= @request.user.name %></p>
+    <% if @request.user == current_user %>
+      <%= link_to "削除", request_path(@request), method: :delete, data: { confirm: "削除します。大丈夫ですか?" } %>
+      <%= link_to "メッセージルーム一覧へ", "#" %>
+    <% else %>
+      <%= link_to "貸せる", "#" %>
+    <% end %>
+  </div>
+  
+  <div class="app-map-list">
+    <ul class="app-map-list-ul">
+      <li><%= link_to "マイページ", "#" %></li>
+      <li><%= link_to "作成したメッセージルーム一覧", "#" %></li>
+      <li><%= link_to "アカウント編集", "#" %></li>
+    </ul>
+  </div>
+
+</div>
