@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :user do
-    email {"email@ex.com"}
+    name {"keigo"}
+    email {"test@ex.com"}
     password { "password" }
     confirmed_at { Date.today }
     created_at {Date.today}

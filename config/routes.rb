@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root :to => 'home_pages#home'
+  get 'mypage', to: 'home_pages#mypage'
   get 'requests/index'
   get 'requests/show'
   get 'request/search', to: 'requests#nearusers', as: :nearusers_search
