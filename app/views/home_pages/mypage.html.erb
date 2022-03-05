@@ -33,13 +33,13 @@
   <div class="requests-list">
     <h1>投稿したリクエスト一覧</h1>
     <% unless @requests == nil %>
-      <% @requests.each do |request| %>
+      <% @requests.each do |r| %>
         <div class="requests-item">
-          <h2 class="item-request-name"><%= request.request_name %></h2>
-          <p class="item-request-detail"><%= request.request_detail %></p>
-          <p class="item-reward"><%= request.reward %></p>
-          <p class="item-user"><%= request.user.name %></p>
-          <%= link_to "削除", request_path(request), method: :delete, data: { confirm: "削除します。大丈夫ですか?" } %>
+          <h2 class="item-request-name"><%= r.request_name %></h2>
+          <p class="item-request-detail"><%= r.request_detail %></p>
+          <p class="item-reward"><%= r.reward %></p>
+          <p class="item-user"><%= r.user.name %></p>
+          <%= link_to "削除", request_path(r), method: :delete, data: { confirm: "削除します。大丈夫ですか?" } %>
         </div>
       <% end %>
     <% else %>
