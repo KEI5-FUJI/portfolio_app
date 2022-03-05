@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/show'
+  get 'messagerooms/index'
   root :to => 'home_pages#home'
   get 'mypage', to: 'home_pages#mypage'
   get 'requests/index'
@@ -14,5 +16,9 @@ Rails.application.routes.draw do
     delete 'signout', to: 'devise/sessions#destroy', as: :logout
   end
   
-  resources :requests, only: [:index, :create, :show, :destroy]
+  resources :requests, only: [:index, :create, :show, :destroy] do
+    resources :messagerooms, only: [:index, :create, :show]  do
+      resources :messages, only: [:create]
+    end
+  end
 end

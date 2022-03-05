@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_152259) do
+ActiveRecord::Schema.define(version: 2022_03_05_062359) do
+
+  create_table "messagerooms", force: :cascade do |t|
+    t.integer "owner_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "request_id", null: false
+    t.index ["owner_id", "guest_id", "request_id"], name: "index_messagerooms_on_owner_id_and_guest_id_and_request_id", unique: true
+    t.index ["request_id"], name: "index_messagerooms_on_request_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "message"
+    t.integer "user_id", null: false
+    t.integer "messageroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["messageroom_id"], name: "index_messages_on_messageroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "requests", force: :cascade do |t|
     t.string "request_name"
@@ -44,5 +62,8 @@ ActiveRecord::Schema.define(version: 2022_03_03_152259) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "messagerooms", "requests"
+  add_foreign_key "messages", "messagerooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "requests", "users"
 end

@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  has_many :requests
+  has_many :requests, dependent: :destroy
+  has_many :messages, dependent: :destroy
   validates :name, presence: true, length: {maximum: 20}
   geocoded_by :now_place
   after_validation :geocode, if: :now_place_changed?
