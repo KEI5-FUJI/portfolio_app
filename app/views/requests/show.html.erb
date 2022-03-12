@@ -1,5 +1,5 @@
-<div class="mypage">
-  <div class="requests-form">
+<div class="request-show">
+  <div class="request-show-left">
   </div>
 
   <div class="requests-list">
@@ -9,9 +9,13 @@
     <p>リクエストユーザー: <%= @request.user.name %></p>
     <% if @request.user == current_user %>
       <%= link_to "削除", request_path(@request), method: :delete, data: { confirm: "削除します。大丈夫ですか?" } %>
-      <%= link_to "メッセージルーム一覧へ", "#" %>
+      <%= link_to "メッセージルーム一覧へ", request_messagerooms_path(request_id: @request.id) %>
     <% else %>
-      <%= link_to "貸せる", "#" %>
+      <% if @request.messagerooms.find_by(owner_id: @request.user_id, guest_id: current_user.id).nil? %>
+        <%= link_to "貸せる", request_messagerooms_path(request_id: @request.id), method: :post %>
+      <% else %>
+        <%= link_to "メッセージルームに入る", request_messageroom_path(request_id: @request.id, id: @request.messagerooms.find_by(owner_id: @request.user_id, guest_id: current_user.id).id) %>
+      <% end %>
     <% end %>
   </div>
   

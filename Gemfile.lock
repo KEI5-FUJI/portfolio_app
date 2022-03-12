@@ -96,6 +96,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.5)
     geocoder (1.7.3)
     geokit (1.13.1)
@@ -262,6 +264,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   factory_bot_rails
+  faker
   geocoder
   geokit-rails
   jbuilder (~> 2.7)

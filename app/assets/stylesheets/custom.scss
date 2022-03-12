@@ -52,13 +52,13 @@ body {
   flex-basis: 30%;
 }
 
-.requests-form {
+.requests-form, .messageroom-index-left, .request-show-left, .messageroom-show-left {
   flex-basis: 20%;
   border-right: solid 1px;
   margin-right: 10px;
 }
 
-.requests-list {
+.requests-list, .messageroom-list, .message-list {
   flex-basis: 50%;
 }
 
@@ -68,7 +68,7 @@ body {
   margin-left: 10px;
 }
 
-.mypage {
+.mypage, .messageroom-index, .request-show, .messageroo-show {
   margin-top: 150px;
   display: flex;
   height: 100%;
@@ -86,6 +86,6 @@ body {
   margin-top: 10px;
 }
 
-.requests-item {
+.requests-item, .messageroom-item {
   border: 1px solid;
 }

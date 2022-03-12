@@ -9,6 +9,12 @@ RSpec.describe "Messagerooms", type: :request do
                              confirmed_at: Date.today, 
                              created_at: Date.today, 
                              updated_at: Date.today)
+    @ignorance_user = User.create(name: "ignorance_keigo",
+                                  email: "ignorance_test@ex.com", 
+                                  password: "password", 
+                                  confirmed_at: Date.today, 
+                                  created_at: Date.today, 
+                                  updated_at: Date.today)
   end
 
   let!(:request_1) {user.requests.create(request_name: "テストです。あれを借りたい。",
@@ -48,8 +54,7 @@ RSpec.describe "Messagerooms", type: :request do
         get request_messagerooms_path(request_id: request_1.id)
         expect(response).to redirect_to mypage_url  
       end
-    end
-    
+    end    
   end
   
   describe "メッセージルーム作成" do
@@ -74,6 +79,7 @@ RSpec.describe "Messagerooms", type: :request do
               post request_messagerooms_path(request_id: request_1.id)
             end.to change {Messageroom.count}.by(0)
             #レンダー
+            expect(response).to redirect_to mypage_url
          end
        end
 
@@ -88,9 +94,50 @@ RSpec.describe "Messagerooms", type: :request do
             end.to change {Messageroom.count}.by(1)
             expect(response).to redirect_to request_messageroom_url(request_id: request_1.id, id: Messageroom.first.id)
             #メッセージルーム内
+            expect(response.body).to include("リクエストしたもの")
          end
        end
     end
+  end
+
+  describe "メッセージルーム内に入る" do
+    before do
+      request_1.messagerooms.create(owner_id: user.id, guest_id: @other_user.id)
+    end
+
+    context "オーナーが入るとき" do
+      before do
+        sign_in user
+      end
+
+      it "入室できる" do
+        get request_messageroom_path(request_id: request_1.id, id: Messageroom.first.id)
+        expect(response.body).to include("リクエストしたもの")
+      end
+    end
+
+    context "ゲストが入るとき" do
+      before do
+        sign_in @other_user
+      end
+
+      it "入室できる" do
+        get request_messageroom_path(request_id: request_1.id, id: Messageroom.first.id)
+        expect(response.body).to include("リクエストしたもの")
+      end
+    end
+
+    context "第三者が入るとき" do
+      before do
+        sign_in @ignorance_user
+      end
+
+      it "入室できない" do
+        get request_messageroom_path(request_id: request_1.id, id: Messageroom.first.id)
+        expect(response).to redirect_to mypage_url
+      end
+    end
+
   end
 
 end

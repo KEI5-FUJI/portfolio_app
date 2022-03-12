@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
        end
     end
     #リクエストをランダムに並び替え
-    @requests = @requests.shuffle
+    @requests = @requests.shuffle if !@requests.nil?
   end
 
   def show

@@ -5,13 +5,12 @@
     </p>
   </div>
 
-  <div class="search-form-group">
-    <form class="search-form">
-      <input class="search-form-input">
-    </form>
-  </div>
-
   <div class="humbergur-menu">
+    <% if user_signed_in? %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "ログイン", new_login_path, method: :post %>
+    <% end %>
   </div>
 
 </div>
