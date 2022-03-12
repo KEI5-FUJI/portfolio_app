@@ -90,6 +90,10 @@ GEM
       devise (>= 4.8.0)
     devise-i18n-views (0.3.7)
     diff-lcs (1.5.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -106,6 +110,7 @@ GEM
       rails (>= 3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -132,6 +137,16 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
+    oauth (0.5.8)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.2.0)
+      oauth
+      omniauth (>= 1.0, < 3)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     pg (1.1.4)
     public_suffix (4.0.6)
@@ -263,12 +278,15 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  dotenv-rails
   factory_bot_rails
   faker
   geocoder
   geokit-rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  omniauth (= 1.9.1)
+  omniauth-twitter
   pg (= 1.1.4)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
