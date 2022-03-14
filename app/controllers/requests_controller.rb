@@ -4,22 +4,6 @@ class RequestsController < ApplicationController
 
   def index
     #2km以内にいるyユーザー一覧取得
-<<<<<<< HEAD
-    @latitude = params[:latitude]
-    @longitude = params[:longitude]
-    
-    @near_users = User.all.within(2, origin: [@latitude, @longitude])
-    requests_ordered = []
-      #2km以内にいるユーザーのリクエスト取得
-    requests_ordered = @near_users.each do |near_user|
-      near_user_requests = near_user.requests
-      near_user_requests.each do |near_user_request|
-          requests_ordered.push(near_user_request)
-      end
-    end
-    #リクエストをランダムに並び替え
-    @requests = requests_ordered.shuffle
-=======
     @near_users = User.all_user_minus_one_user(current_user).within(2, origin: [current_user.lat, current_user.lng])
     #2km以内にいるユーザーのリクエスト取得
     near_users_requests=[]
@@ -28,7 +12,6 @@ class RequestsController < ApplicationController
     end
     #リクエストをランダムに並び替え
     @requests = near_users_requests.shuffle
->>>>>>> make-latlng-function
   end
 
   def show
