@@ -12,9 +12,9 @@ class User < ApplicationRecord
                    :lng_column_name => :lng
 
   def self.find_for_oauth(auth)
-    uid = auth[:uid]
-    provider = auth[:provider]
-    user = User.where(uid: uid, provider: provider).first
+    uid = auth.uid
+    provider = auth.provider
+    user = User.find_by(uid: uid, provider: provider)
     user || User.create!(
            uid: auth.uid,
            provider: auth.provider,
