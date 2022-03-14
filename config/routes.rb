@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   get 'messagerooms/index'
   root :to => 'home_pages#home'
   get 'mypage', to: 'home_pages#mypage'
-  get 'requests/index'
-  get 'requests/show'
-  get 'request/search', to: 'requests#nearusers', as: :nearusers_search
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'

@@ -43,16 +43,11 @@ body {
   flex-basis: 20%;
 }
 
-.requests-index {
-  display: flex;
-  justify-content: space-between;
-}
-
 .requests-form-group {
   flex-basis: 30%;
 }
 
-.requests-form, .messageroom-index-left, .request-show-left, .messageroom-show-left {
+.requests-form, .messageroom-index-left, .request-show-left, .messageroom-show-left, .current-Location-button {
   flex-basis: 20%;
   border-right: solid 1px;
   margin-right: 10px;
@@ -68,7 +63,7 @@ body {
   margin-left: 10px;
 }
 
-.mypage, .messageroom-index, .request-show, .messageroo-show {
+.mypage, .messageroom-index, .request-show, .messageroo-show, .requests-index {
   margin-top: 150px;
   display: flex;
   height: 100%;

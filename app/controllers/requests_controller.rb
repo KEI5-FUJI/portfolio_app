@@ -4,17 +4,20 @@ class RequestsController < ApplicationController
 
   def index
     #2km以内にいるyユーザー一覧取得
-    @near_users = User.all.within(2, origin: [current_user.lat, current_user.lng])
+    @latitude = params[:latitude]
+    @longitude = params[:longitude]
+    
+    @near_users = User.all.within(2, origin: [@latitude, @longitude])
     requests_ordered = []
-    #2km以内にいるユーザーのリクエスト取得
+      #2km以内にいるユーザーのリクエスト取得
     requests_ordered = @near_users.each do |near_user|
-       near_user_requests = near_user.requests
-       near_user_requests.each do |near_user_request|
-         @requests.push(near_user_request)
-       end
+      near_user_requests = near_user.requests
+      near_user_requests.each do |near_user_request|
+          requests_ordered.push(near_user_request)
+      end
     end
     #リクエストをランダムに並び替え
-    @requests = @requests.shuffle if !@requests.nil?
+    @requests = requests_ordered.shuffle
   end
 
   def show
@@ -38,16 +41,11 @@ class RequestsController < ApplicationController
     redirect_to mypage_url
   end
 
-  def nearusers
-    #緯度
-    latitude = params[:latitude]
-    #経度
-    longitude = params[:longitude]
-    #現在のユーザーの現在地の緯度と経度を保存。
-    current_user.update_attributes(lat: latitude, lng: longitude)
-  end
-
   private
+    def current_user_place_params
+      params.permit(:lat, :lng)
+    end
+
     def request_params
       params.require(:request).permit(:request_name, :request_detail, :reward)
     end
