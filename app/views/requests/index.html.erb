@@ -1,18 +1,35 @@
 <div class="requests-index">
+  <div class="current-Location-button">
+    <%= button_tag "現在地から探す", type: "button", class: "currentLocation" %>
+  </div>
+
   <div class="requests-list">
-    <div class="requests-item">
-      <h2 class="item-request-name"></h2>
-      <p class="item-request-detail"></p>
-      <p class="item-reward"></p>
-      <p class="item-user"></p>
-    </div>
+    <% if !@requests.empty? %>
+      <% @requests.each do |request| %>
+        <div class="requests-item">
+          <h2 class="item-request-name"><%= request.request_name %></h2>
+          <p class="item-request-detail"><%= request.request_detail %></p>
+          <p class="item-reward"><%= request.reward %></p>
+          <p class="item-user"><%= request.user.name %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= current_user.lat %></p>
+      <p><%= current_user.lng %></p>
+    <% end %>
   </div>
   
   <div class="app-map-list">
     <ul>
-      <%= link_to "マイページ", # %>
-      <%= link_to "メッセージルーム一覧", # %>
-      <%= link_to "アカウント編集", # %>
+      <li>
+      <%= link_to "マイページ", "#" %>
+      </li>
+      <li>
+      <%= link_to "メッセージルーム一覧", "#" %>
+      </li>
+      <li>
+      <%= link_to "アカウント編集", "#" %>
+      </li>
     </ul>
   </div>
 

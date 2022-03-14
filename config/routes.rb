@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'mypage', to: 'home_pages#mypage'
   get 'requests/index'
   get 'requests/show'
-  get 'request/search', to: 'requests#nearusers', as: :nearusers_search
+  post 'save_current_location', to: 'requests#save_current_location', as: :save_current_location
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
