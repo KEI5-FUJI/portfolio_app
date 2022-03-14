@@ -28,4 +28,8 @@ class User < ApplicationRecord
   def self.dummy_email(auth)
        "#{Time.now.strftime("%Y%M%d%H%M%S").to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
+
+  def self.all_user_minus_one_user(one_user)
+    User.where("id != ?", one_user.id)
+  end
 end

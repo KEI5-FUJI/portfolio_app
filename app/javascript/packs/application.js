@@ -8,6 +8,10 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require('jquery')
+<<<<<<< HEAD
+=======
+import "./requests/index.js"
+>>>>>>> make-latlng-function
 
 Rails.start()
 Turbolinks.start()

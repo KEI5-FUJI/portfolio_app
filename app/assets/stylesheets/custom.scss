@@ -26,6 +26,11 @@ body {
   flex-basis: 10%;
 }
 
+.app-title p {
+  height: 100%;
+  padding: 0px;
+}
+
 .search-form-group {
   flex-basis: 50%;
 }
@@ -43,6 +48,10 @@ body {
   flex-basis: 20%;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> make-latlng-function
 .requests-form-group {
   flex-basis: 30%;
 }

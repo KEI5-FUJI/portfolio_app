@@ -5,6 +5,7 @@
   </div>
 
   <div class="requests-list">
+<<<<<<< HEAD
   <% if !@requests.empty? %>
     <div class="requests-item">
       <h2 class="item-request-name"></h2>
@@ -16,13 +17,40 @@
     <p><%= @latitude %></p>
     <p><%= @longitude %></p>
   <% end %>
+=======
+    <% if !@requests.empty? %>
+      <% @requests.each do |request| %>
+        <div class="requests-item">
+          <h2 class="item-request-name"><%= request.request_name %></h2>
+          <p class="item-request-detail"><%= request.request_detail %></p>
+          <p class="item-reward"><%= request.reward %></p>
+          <p class="item-user"><%= request.user.name %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <p><%= current_user.lat %></p>
+      <p><%= current_user.lng %></p>
+    <% end %>
+>>>>>>> make-latlng-function
   </div>
   
   <div class="app-map-list">
     <ul>
+<<<<<<< HEAD
       <%= link_to "マイページ", "#" %>
       <%= link_to "メッセージルーム一覧", "#" %>
       <%= link_to "アカウント編集", "#" %>
+=======
+      <li>
+      <%= link_to "マイページ", "#" %>
+      </li>
+      <li>
+      <%= link_to "メッセージルーム一覧", "#" %>
+      </li>
+      <li>
+      <%= link_to "アカウント編集", "#" %>
+      </li>
+>>>>>>> make-latlng-function
     </ul>
   </div>
 

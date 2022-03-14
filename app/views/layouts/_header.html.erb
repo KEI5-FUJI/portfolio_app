@@ -1,13 +1,14 @@
 <div class="header">
   <div class="app-title">
     <p>
-      かしかる
+      ポートフォリオアプリ
     </p>
   </div>
 
   <div class="humbergur-menu">
     <% if user_signed_in? %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <%= current_user.name %>
     <% else %>
       <%= link_to "ログイン", new_login_path, method: :post %>
     <% end %>

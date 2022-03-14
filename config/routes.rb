@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   get 'messagerooms/index'
   root :to => 'home_pages#home'
   get 'mypage', to: 'home_pages#mypage'
+<<<<<<< HEAD
+=======
+  get 'requests/index'
+  get 'requests/show'
+  post 'save_current_location', to: 'requests#save_current_location', as: :save_current_location
+>>>>>>> make-latlng-function
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
