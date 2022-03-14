@@ -38,6 +38,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @user.skip_confirmation!
         @user.save
         sign_in @user
+        redirect_to mypage_url
       else
         session["devise.#{provider}_data"] = request.env['omniauth.auth']
         redirect_to new_user_registration_url
