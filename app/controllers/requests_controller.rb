@@ -35,10 +35,6 @@ class RequestsController < ApplicationController
     redirect_to mypage_url
   end
 
-<<<<<<< HEAD
-  private
-    def current_user_place_params
-=======
   def save_current_location
     #緯度
     latitude = params[:latitude]
@@ -54,7 +50,6 @@ class RequestsController < ApplicationController
 
   private
     def lat_and_lng_params
->>>>>>> make-latlng-function
       params.permit(:lat, :lng)
     end
 
