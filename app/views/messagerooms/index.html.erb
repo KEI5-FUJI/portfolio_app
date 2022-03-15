@@ -1,0 +1,30 @@
+<div class="messageroom-index">
+  <div class="messageroom-index-left">
+  </div>
+
+  <div class="messageroom-list">
+    <h1>メッセージルーム一覧</h1>
+    <% unless @messagerooms == nil %>
+      <% @messagerooms.each do |m| %>
+        <% messageroom_user = User.find_by(id: m.guest_id) %>
+        <% messageroom_request = m.request %>
+        <%= link_to(request_messageroom_path(request_id: messageroom_request.id, id: m.id)) do %>
+          <div class="messageroom-item">    
+            <h2 class="item-messageroom-name"><%= messageroom_user.name %>とのメッセージルーム</h2>       
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <h2>メッセージルームはありません。</h2>
+    <% end %>
+  </div>
+  
+  <div class="app-map-list">
+    <ul class="app-map-list-ul">
+      <li><%= link_to "マイページ", "#" %></li>
+      <li><%= link_to "作成したメッセージルーム一覧", "#" %></li>
+      <li><%= link_to "アカウント編集", "#" %></li>
+    </ul>
+  </div>
+
+</div>
