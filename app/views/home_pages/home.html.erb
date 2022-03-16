@@ -1,1 +1,9 @@
-<h1>ホームだよ</h1>
+<div class="home-page block">
+  <div class="app-discription">
+   <h1>このアプリは近くの人との助け合いを簡単にするアプリです。</h1>
+  </div>
+  <div class="app-login-group">
+    <button><%= link_to "ログインする", login_path%></button>
+    <p>アカウントが未作成の時は<%= link_to "ここから", new_user_session_path %>登録してください。</p>
+  </div>
+</div>

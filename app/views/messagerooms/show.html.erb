@@ -1,37 +1,45 @@
-<div class="messageroo-show">
+<div class="messageroom-show">
   <div class="messageroom-show-left">
-    <%= form_with(model: @message, url: request_messageroom_messages_path(request_id: @request.id, messageroom_id: @messageroom.id), scope: :message, local: true) do |f| %>
-    <li>
-      <%= f.label :message %>
-    </li>
-    <li>
-      <%= f.text_area :message %>
-    </li>
-    <li>
-      <%= f.submit "メッセージ投稿" %>
-    </li>
-    <% end %>
+    <ul>
+      <%= form_with(model: @message, url: request_messageroom_messages_path(request_id: @request.id, messageroom_id: @messageroom.id), scope: :message, local: true) do |f| %>
+      <li>
+        <%= f.label :message, "メッセージ" %>
+      </li>
+      <li>
+        <%= f.text_area :message %>
+      </li>
+      <li>
+        <%= f.submit "メッセージ投稿" %>
+      </li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="message-list">
     <% @talk_user = current_user == User.find_by(id: @messageroom.owner_id) ? User.find_by(id: @messageroom.guest_id) : User.find_by(id: @messageroom.owner_id) %>
     <h1><%= @talk_user.name %>とのメッセージ</h1>
     <h2>リクエストしたもの: <%= @request.request_name %></h2>
-    <% unless @messages == nil %>
-      <% @messages.each do |m| %>
-        <li>
-          <%= m.message %>
-        </li>
-      <% end %>
+    <div class="message-box">
+      <% unless @messages == nil %>
+        <% @messages.each do |message| %>
+          <% if message.user_id == @messageroom.owner_id %>
+            <div class="owner-message-list">
+              <div class="owner-text-box message-text-box">
+                <%= message.message %>
+              </div>
+            </div><br>
+          <% else %>
+            <div class="guest-message-list">
+              <div class="guest-text-box message-text-box">
+                <%= message.message %>
+              </div>
+            </div><br>
     <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   
-  <div class="app-map-list">
-    <ul class="app-map-list-ul">
-      <li><%= link_to "マイページ", "#" %></li>
-      <li><%= link_to "作成したメッセージルーム一覧", "#" %></li>
-      <li><%= link_to "アカウント編集", "#" %></li>
-    </ul>
-  </div>
+  <%= render "layouts/app_map_list" %>
 
 </div>

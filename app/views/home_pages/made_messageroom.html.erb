@@ -1,15 +1,16 @@
-<div class="messageroom-index">
-  <div class="messageroom-index-left">
+<div class="request-show">
+  <div class="request-show-left">
   </div>
 
   <div class="messageroom-list">
     <h2>メッセージルーム一覧</h2>
     <% unless @messagerooms.empty? %>
       <% @messagerooms.each do |m| %>
-        <% messageroom_user = User.find_by(id: m.guest_id) %>
+        <% messageroom_user = User.find_by(id: m.owner_id) %>
         <% messageroom_request = m.request %>
         <%= link_to(request_messageroom_path(request_id: messageroom_request.id, id: m.id)) do %>
-          <div class="messageroom-item">    
+          <div class="messageroom-item"> 
+            <h3 class="item-messageroom-request-name">リクエスト名: <%= messageroom_request.request_name %></h3>   
             <h3 class="item-messageroom-name"><%= messageroom_user.name %>とのメッセージルーム</h2>       
           </div>
         <% end %>

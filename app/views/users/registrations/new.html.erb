@@ -1,10 +1,5 @@
-<div class="signup_title">
-  <h1>新規登録してください。</h1>
-</div>
 
-<div class="center-division"></div>
-
-<div class="signup_form">
+<div class="login-or-signup-edit-form">
   <h2>新規登録</h2>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
@@ -21,9 +16,7 @@
 
     <div class="field">
       <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字より長く設定してください。)</em>
-      <% end %><br/>
+      <br/>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 

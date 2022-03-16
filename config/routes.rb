@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'messagerooms/index'
   root :to => 'home_pages#home'
   get 'mypage', to: 'home_pages#mypage'
+  get 'made_messageroom', to: 'home_pages#made_messageroom'
+  get 'make_messageroom', to: 'home_pages#make_messageroom'
   get 'requests/index'
   get 'requests/show'
   post 'save_current_location', to: 'requests#save_current_location', as: :save_current_location

@@ -5,6 +5,7 @@
   </div>
 
   <div class="requests-list">
+    <h2>近くのユーザーのリクエスト一覧</h2>
     <% if !@requests.empty? %>
       <% @requests.each do |request| %>
         <div class="requests-item">
@@ -20,18 +21,6 @@
     <% end %>
   </div>
   
-  <div class="app-map-list">
-    <ul>
-      <li>
-      <%= link_to "マイページ", "#" %>
-      </li>
-      <li>
-      <%= link_to "メッセージルーム一覧", "#" %>
-      </li>
-      <li>
-      <%= link_to "アカウント編集", "#" %>
-      </li>
-    </ul>
-  </div>
+  <%= render "layouts/app_map_list" %>
 
 </div>

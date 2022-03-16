@@ -3,21 +3,21 @@
     <%= form_with(url: requests_url, model: @request, method: :post, local: true) do |f| %>
       <ul class="requests-form-list">
         <li>
-          <%= f.label :request_name %>
+          <%= f.label :request_name, "リクエスト名" %>
         </li>
         <li>
-          <%= f.text_area :request_name %>
+          <%= f.text_field :request_name %>
         </li>
 
         <li>
-          <%= f.label :request_detail %>
+          <%= f.label :request_detail, "リクエスト詳細" %>
         </li>
         <li>
           <%= f.text_area :request_detail %>
         </li>
 
         <li>
-          <%= f.label :reward %>
+          <%= f.label :reward, "報酬" %>
         </li>
         <li>
           <%= f.text_area :reward %>
@@ -31,7 +31,7 @@
   </div>
 
   <div class="requests-list">
-    <h1>投稿したリクエスト一覧</h1>
+    <h2>投稿したリクエスト一覧</h2>
     <% unless @requests == nil %>
       <% @requests.each do |r| %>
         <%= link_to(request_path(r)) do %>
@@ -49,12 +49,6 @@
     <% end %>
   </div>
   
-  <div class="app-map-list">
-    <ul class="app-map-list-ul">
-      <li><%= link_to "マイページ", "#" %></li>
-      <li><%= link_to "作成したメッセージルーム一覧", "#" %></li>
-      <li><%= link_to "アカウント編集", "#" %></li>
-    </ul>
-  </div>
+  <%= render "layouts/app_map_list" %>
 
 </div>
