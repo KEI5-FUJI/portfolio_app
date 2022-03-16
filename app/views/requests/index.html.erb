@@ -8,12 +8,14 @@
     <h2>近くのユーザーのリクエスト一覧</h2>
     <% if !@requests.empty? %>
       <% @requests.each do |request| %>
-        <div class="requests-item">
-          <h2 class="item-request-name"><%= request.request_name %></h2>
-          <p class="item-request-detail"><%= request.request_detail %></p>
-          <p class="item-reward"><%= request.reward %></p>
-          <p class="item-user"><%= request.user.name %></p>
-        </div>
+        <%= link_to request_path(request) do %>
+          <div class="requests-item">
+            <h2 class="item-request-name"><%= request.request_name %></h2>
+            <p class="item-request-detail"><%= request.request_detail %></p>
+            <p class="item-reward"><%= request.reward %></p>
+            <p class="item-user"><%= request.user.name %></p>
+          </div>
+        <% end %>
       <% end %>
     <% else %>
       <p><%= current_user.lat %></p>

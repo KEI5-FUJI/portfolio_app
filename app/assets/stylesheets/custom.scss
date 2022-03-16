@@ -163,9 +163,9 @@ body {
   height: 500px;
   width: 645px;
   border: 1px #ddd solid;
-  overflow-y: scroll;
   background-color: white;
   list-style: none;
+  overflow-y: scroll;
 }
 
 .app-map-list {
@@ -263,6 +263,10 @@ body {
   max-width: 350px;
   text-align: left;
   display: inline-block;
+  word-break: break-all;
+  &:nth-child(1) {
+    margin-top: 10px;
+  }
 }
 
 .guest-message-list {
