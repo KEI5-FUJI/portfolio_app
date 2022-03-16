@@ -1,5 +1,6 @@
 class HomePagesController < ApplicationController
   before_action :authenticate_user!, only: [:mypage]
+  before_action :banned_logged_user, only: [:home]
 
   def home
   end
@@ -17,4 +18,11 @@ class HomePagesController < ApplicationController
   def make_messageroom
     @messagerooms = Messageroom.where("owner_id = ?", current_user.id)
   end
+
+  private 
+    def banned_logged_user
+      if user_signed_in?
+        redirect_to mypage_url
+      end
+    end
 end
