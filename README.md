@@ -2,7 +2,7 @@
 
 ## 使用技術
 
-### フロント: HTML, css, Javascript, jquery
+### フロント: HTML, css(sass), Javascript, jquery
 
 ### サーバーサイド: Ruby, Ruby on rails(テストとしてRSpecを使用), heroku, postgresql
 
